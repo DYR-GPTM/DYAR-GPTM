@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DYAR-GPTM | About</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            color: white;
+
+            background:
+                linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.85)),
+                url("moto.png");
+
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        /* =========================
+           MENU ATAS TENGAH
+        ========================= */
+        nav {
+            position: absolute;
+            top: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+
+            z-index: 10;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+
+            padding: 10px 20px;
+
+            border-radius: 8px;
+
+            font-weight: bold;
+            position: relative;
+
+            transition: 0.3s;
+        }
+
+        /* Efek saat diarahkan */
+        nav a:hover {
+            background: #d00000;
+        }
+
+        /* Garis merah halaman aktif */
+        nav a.active::after {
+            content: "";
+
+            position: absolute;
+
+            left: 10px;
+            right: 10px;
+            bottom: 3px;
+
+            height: 3px;
+
+            background: red;
+
+            border-radius: 5px;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+        header {
+            text-align: center;
+
+            padding: 100px 20px 35px;
+        }
+
+        header h1 {
+            font-size: 45px;
+            font-weight: 900;
+            letter-spacing: 3px;
+        }
+
+        header p {
+            margin-top: 8px;
+            color: #ffffff;
+        }
+
+        /* =========================
+           ABOUT
+        ========================= */
+        .about {
+            max-width: 850px;
+
+            margin: 40px auto;
+
+            padding: 30px;
+
+            background: rgba(0,0,0,0.75);
+
+            border-radius: 15px;
+
+            line-height: 1.8;
+        }
+
+        .about h2 {
+            margin-bottom: 20px;
+
+            border-left: 5px solid red;
+
+            padding-left: 12px;
+        }
+
+        .about p {
+            margin-bottom: 15px;
+
+            color: #ddd;
+        }
+
+        .about h3 {
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+        footer {
+            text-align: center;
+
+            padding: 25px;
+
+            color: #aaa;
+        }
+
+        /* =========================
+           TAMPILAN HP
+        ========================= */
+        @media (max-width: 600px) {
+
+            nav {
+                top: 15px;
+                gap: 3px;
+                width: 100%;
+            }
+
+            nav a {
+                padding: 8px 10px;
+                font-size: 13px;
+            }
+
+            header {
+                padding-top: 85px;
+            }
+
+            header h1 {
+                font-size: 35px;
+            }
+
+            .about {
+                margin: 25px 15px;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         MENU
+    ========================= -->
+    <nav>
+        <a href="index.html">HOME</a>
+        <a href="jadwal.html">JADWAL</a>
+        <a href="news.html">NEWS</a>
+        <a href="about.html">ABOUT</a>
+    </nav>
+
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+    <header>
+        <h1>DYAR-GPTM</h1>
+        <p>MotoGP Information Website</p>
+    </header>
+
+
+    <!-- =========================
+         ISI ABOUT
+    ========================= -->
+    <div class="about">
+
+        <h2>🏁 Tentang DYAR-GPTM</h2>
+
+        <p>
+            DYAR-GPTM adalah website yang dibuat sebagai pusat
+            informasi seputar dunia MotoGP.
+        </p>
+
+        <p>
+            Website ini menyediakan berbagai informasi MotoGP,
+            mulai dari daftar pembalap, tim, negara asal pembalap,
+            jadwal balapan, hasil balapan, hingga klasemen
+            sementara.
+        </p>
+
+
+        <h3>🏍️ Informasi Pembalap</h3>
+
+        <p>
+            Halaman Home digunakan untuk menampilkan daftar
+            pembalap MotoGP beserta tim dan negara asal mereka.
+        </p>
+
+
+        <h3>📅 Jadwal MotoGP</h3>
+
+        <p>
+            Halaman Jadwal berisi kalender MotoGP dari setiap
+            seri dalam satu musim, termasuk informasi mengenai
+            sirkuit dan jadwal balapan.
+        </p>
+
+
+        <h3>🏆 Hasil dan Klasemen</h3>
+
+        <p>
+            DYAR-GPTM dirancang untuk menampilkan hasil balapan
+            dan klasemen sementara yang dapat diperbarui
+            mengikuti jalannya musim MotoGP.
+        </p>
+
+
+        <h3>🚀 Pengembangan Website</h3>
+
+        <p>
+            DYAR-GPTM akan terus dikembangkan agar dapat
+            digunakan untuk berbagai musim MotoGP berikutnya,
+            sehingga informasi tahun 2026, 2027, dan musim
+            selanjutnya dapat ditampilkan dalam satu website.
+        </p>
+
+
+        <h3>⚡ DYAR-GPTM</h3>
+
+        <p>
+            Website ini masih dalam pengembangan.
+            kembali lagi nanti...
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+    <footer>
+        © 2026 | MotoGP Fan Website
+    </footer>
+
+</body>
+</html>

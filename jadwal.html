@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DYAR-GPTM | Jadwal MotoGP 2026</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    color:white;
+    min-height:100vh;
+
+    background:
+    linear-gradient(rgba(0,0,0,.78),rgba(0,0,0,.94)),
+    url("mot.jpg") center/cover fixed;
+
+    padding-bottom:50px;
+}
+
+
+/* ================= NAV ================= */
+
+nav{
+    position:absolute;
+    top:25px;
+    left:50%;
+    transform:translateX(-50%);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    gap:8px;
+
+    z-index:10;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+
+    padding:10px 20px;
+
+    border-radius:8px;
+
+    font-weight:bold;
+
+    transition:.3s;
+}
+
+nav a:hover{
+    background:#d00000;
+}
+
+
+/* ================= HEADER ================= */
+
+header{
+    text-align:center;
+
+    padding:105px 20px 35px;
+}
+
+header h1{
+    font-size:43px;
+
+    font-weight:900;
+
+    letter-spacing:2px;
+}
+
+header p{
+    margin-top:8px;
+
+    color:#ccc;
+}
+
+
+/* ================= GRID ================= */
+
+.calendar{
+    width:94%;
+    max-width:1250px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:22px;
+}
+
+
+/* ================= CARD ================= */
+
+.gp-card{
+
+    background:
+    rgba(5,5,8,.96);
+
+    border:
+    2px solid #333;
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 8px 25px rgba(0,0,0,.5);
+
+    transition:.3s;
+}
+
+.gp-card:hover{
+
+    transform:
+    translateY(-4px);
+
+    border-color:
+    #e00000;
+}
+
+
+/* ================= INFO ================= */
+
+.gp-info{
+
+    padding:
+    18px 18px 12px;
+}
+
+.round{
+
+    display:inline-block;
+
+    background:#ff4b25;
+
+    padding:
+    7px 12px;
+
+    border-radius:6px;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    margin-bottom:10px;
+}
+
+.gp-name{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:9px;
+
+    font-size:25px;
+
+    font-weight:900;
+}
+
+.flag{
+
+    font-size:27px;
+}
+
+.circuit-name{
+
+    color:#ccc;
+
+    margin-top:5px;
+
+    font-size:14px;
+}
+
+.date{
+
+    margin-top:12px;
+
+    font-size:14px;
+
+    font-weight:bold;
+}
+
+
+/* ================= FOTO PEMBALAP ================= */
+
+.rider-photo{
+
+    width:100%;
+
+    height:250px;
+
+    background:#111;
+
+    overflow:hidden;
+
+    position:relative;
+}
+
+.rider-photo img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    object-position:
+    center 20%;
+
+    display:block;
+}
+
+
+/* nama pembalap */
+
+.rider-name{
+
+    position:absolute;
+
+    left:12px;
+
+    bottom:12px;
+
+    background:
+    rgba(0,0,0,.78);
+
+    padding:
+    8px 12px;
+
+    border-radius:7px;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+    border-left:
+    4px solid #e00000;
+}
+
+
+/* kalau gambar gagal */
+
+.no-photo{
+
+    width:100%;
+    height:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#999;
+
+    text-align:center;
+}
+
+.no-photo .icon{
+
+    font-size:55px;
+
+    margin-bottom:8px;
+}
+
+
+/* ================= SESSION ================= */
+
+.sessions{
+
+    padding:12px;
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:7px;
+}
+
+.session{
+
+    background:#111;
+
+    border-radius:7px;
+
+    padding:10px;
+
+    font-size:12px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:5px;
+}
+
+.practice{
+    border-left:
+    4px solid #00aaff;
+}
+
+.qualifying{
+    border-left:
+    4px solid #bbaaff;
+}
+
+.sprint{
+    border-left:
+    4px solid #ff5533;
+}
+
+.race{
+    border-left:
+    4px solid #35d36b;
+}
+
+.session strong{
+    color:#ddd;
+}
+
+.session span{
+    font-weight:bold;
+}
+
+
+/* ================= RECORD ================= */
+
+.record{
+
+    margin:
+    0 12px 14px;
+
+    padding:12px;
+
+    background:
+    rgba(100,0,0,.55);
+
+    border:
+    1px solid #a52b2b;
+
+    border-radius:8px;
+}
+
+.record-title{
+
+    color:#ff7b69;
+
+    font-size:11px;
+
+    font-weight:bold;
+
+    margin-bottom:5px;
+}
+
+.record-text{
+
+    font-size:13px;
+
+    font-weight:bold;
+}
+
+
+/* ================= FOOTER ================= */
+
+footer{
+
+    text-align:center;
+
+    color:#aaa;
+
+    margin-top:35px;
+
+    font-size:13px;
+}
+
+
+/* ================= HP ================= */
+
+@media(max-width:750px){
+
+    nav{
+
+        top:15px;
+
+        gap:2px;
+    }
+
+    nav a{
+
+        padding:
+        8px 10px;
+
+        font-size:12px;
+    }
+
+    header{
+
+        padding-top:90px;
+    }
+
+    header h1{
+
+        font-size:31px;
+    }
+
+    .calendar{
+
+        grid-template-columns:1fr;
+    }
+
+    .rider-photo{
+
+        height:230px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- ================= NAV ================= -->
+
+<nav>
+
+    <a href="index.html">
+        HOME
+    </a>
+
+    <a href="jadwal.html">
+        JADWAL
+    </a>
+
+    <a href="news.html">
+        NEWS
+    </a> 
+
+    <a
+     href="about.html">
+        ABOUT
+    </a>
+</nav>
+
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <h1>
+        🏁 JADWAL MOTOGP 2026
+    </h1>
+
+    <p>
+        Kalender balap, pembalap, jadwal sesi dan rekor lap
+    </p>
+
+</header>
+
+
+<!-- ================= CALENDAR ================= -->
+
+<div
+    class="calendar"
+    id="calendar">
+</div>
+
+
+<footer>
+
+    © 2026 DYAR-GPTM —
+    MotoGP Information Website
+
+</footer>
+
+
+<script>
+
+
+/* =================================================
+   DATA GP 2026 + PEMBALAP SESUAI NEGARA
+   ================================================= */
+
+const races = [
+
+{
+round:"01",
+flag:"🇹🇭",
+country:"Thailand",
+circuit:"Chang International Circuit",
+date:"27 Februari – 1 Maret 2026",
+
+rider:"Somkiat Chantra",
+wiki:"Somkiat_Chantra",
+
+practice:"16:00 WIB",
+qualifying:"14:50 WIB",
+sprint:"16:00 WIB",
+race:"16:00 WIB",
+
+record:"Data rekor lap"
+},
+
+
+{
+round:"02",
+flag:"🇧🇷",
+country:"Brasil",
+circuit:"Autódromo Internacional de Goiânia",
+date:"20 – 22 Maret 2026",
+
+rider:"Diogo Moreira",
+wiki:"Diogo_Moreira",
+
+practice:"21:00 WIB",
+qualifying:"20:50 WIB",
+sprint:"20:00 WIB",
+race:"20:00 WIB",
+
+record:"Data rekor lap"
+},
+
+
+{
+round:"03",
+flag:"🇺🇸",
+country:"Amerika Serikat",
+circuit:"Circuit of the Americas",
+date:"27 – 29 Maret 2026",
+
+rider:"Joe Roberts",
+wiki:"Joe_Roberts_(motorcyclist)",
+
+practice:"22:00 WIB",
+qualifying:"22:40 WIB",
+sprint:"21:00 WIB",
+race:"21:00 WIB",
+
+record:"2:02.820 — Francesco Bagnaia"
+},
+
+
+{
+round:"04",
+flag:"🇪🇸",
+country:"Spanyol",
+circuit:"Circuito de Jerez – Ángel Nieto",
+date:"24 – 26 April 2026",
+
+rider:"Marc Márquez",
+wiki:"Marc_Márquez",
+
+practice:"15:00 WIB",
+qualifying:"14:50 WIB",
+sprint:"15:00 WIB",
+race:"15:00 WIB",
+
+record:"1:36.025 — Marc Márquez"
+},
+
+
+{
+round:"05",
+flag:"🇫🇷",
+country:"Prancis",
+circuit:"Le Mans – Bugatti Circuit",
+date:"8 – 10 Mei 2026",
+
+rider:"Johann Zarco",
+wiki:"Johann_Zarco",
+
+practice:"19:00 WIB",
+qualifying:"17:50 WIB",
+sprint:"19:00 WIB",
+race:"19:00 WIB",
+
+record:"Data rekor lap"
+},
+
+
+{
+round:"06",
+flag:"🇪🇸",
+country:"Catalunya",
+circuit:"Circuit de Barcelona-Catalunya",
+date:"15 – 17 Mei 2026",
+
+rider:"Marc Márquez",
+wiki:"Marc_Márquez",
+
+practice:"19:00 WIB",
+qualifying:"18:50 WIB",
+sprint:"19:00 WIB",
+race:"19:00 WIB",
+
+record:"1:38.639 — Aleix Espargaró"
+},
+
+
+{
+round:"07",
+flag:"🇮🇹",
+country:"Italia",
+circuit:"Mugello Circuit",
+date:"29 – 31 Mei 2026",
+
+rider:"Valentino Rossi",
+wiki:"Valentino_Rossi",
+
+practice:"19:00 WIB",
+qualifying:"17:50 WIB",
+sprint:"19:00 WIB",
+race:"19:00 WIB",
+
+record:"1:44.855 — Jorge Martín"
+},
+
+
+{
+round:"08",
+flag:"🇭🇺",
+country:"Hungaria",
+circuit:"Balaton Park Circuit",
+date:"5 – 7 Juni 2026",
+
+rider:"Tamas Kovacs",
+wiki:"Tamas_Kovacs",
+
+practice:"18:00 WIB",
+qualifying:"17:50 WIB",
+sprint:"18:00 WIB",
+race:"18:00 WIB",
+
+record:"Data rekor lap"
+},
+
+
+{
+round:"09",
+flag:"🇨🇿",
+country:"Republik Ceko",
+circuit:"Automotodrom Brno",
+date:"19 – 21 Juni 2026",
+
+rider:"Karel Abraham",
+wiki:"Karel_Abraham",
+
+practice:"20:00 WIB",
+qualifying:"19:50 WIB",
+sprint:"19:00 WIB",
+race:"19:00 WIB",
+
+record:"1:56.027 — Marc Márquez"
+},
+
+
+{
+round:"10",
+flag:"🇳🇱",
+country:"Belanda",
+circuit:"TT Circuit Assen",
+date:"26 – 28 Juni 2026",
+
+rider:"Bo Bendsneyder",
+wiki:"Bo_Bendsneyder",
+
+practice:"19:00 WIB",
+qualifying:"18:50 WIB",
+sprint:"19:00 WIB",
+race:"19:00 WIB",
+
+record:"1:31.866 — Jorge Martín"
+},
+
+
+{
+round:"11",
+flag:"🇩🇪",
+country:"Jerman",
+circuit:"Sachsenring",
+date:"10 – 12 Juli 2026",
+
+rider:"Stefan Bradl",
+wiki:"Stefan_Bradl",
+
+practice:"19:00 WIB",
+qualifying:"18:50 WIB",
+sprint:"19:00 WIB",
+race:"19:00 WIB",
+
+record:"1:19.765 — Marc Márquez"
+},
+
+
+{
+round:"12",
+flag:"🇬🇧",
+country:"Inggris Raya",
+circuit:"Silverstone Circuit",
+date:"7 – 9 Agustus 2026",
+
+rider:"Jake Dixon",
+wiki:"Jake_Dixon_(motorcyclist)",
+
+practice:"21:00 WIB",
+qualifying:"20:50 WIB",
+sprint:"21:00 WIB",
+race:"21:00 WIB",
+
+record:"Data rekor lap"
+},
+
+
+{
+round:"13",
+flag:"🇪🇸",
+country:"Aragon",
+circuit:"MotorLand Aragón",
+date:"28 – 30 Agustus 2026",
+
+rider:"Marc Márquez",
+wiki:"Marc_Márquez",
+
+practice:"19:00 WIB",
+qualifying:"18:50 WIB",
+sprint:"19:00 WIB",
+race:"19:00 WIB",
+
+record:"1:45.801 — Marc Márquez"
+},
+
+
+{
+round:"14",
+flag:"🇸🇲",
+country:"San Marino",
+circuit:"Misano World Circuit Marco Simoncelli",
+date:"11 – 13 September 2026",
+
+rider:"Valentino Rossi",
+wiki:"Valentino_Rossi",
+
+practice:"19:00 WIB",
+qualifying:"18:50 WIB",
+sprint:"19:00 WIB",
+race:"19:00 WIB",
+
+record:"1:30.877 — Jorge Martín"
+},
+
+
+{
+round:"15",
+flag:"🇦🇹",
+country:"Austria",
+circuit:"Red Bull Ring",
+date:"18 – 20 September 2026",
+
+rider:"Brad Binder",
+wiki:"Brad_Binder",
+
+practice:"19:00 WIB",
+qualifying:"18:50 WIB",
+sprint:"19:00 WIB",
+race:"19:00 WIB",
+
+record:"1:28.539 — Francesco Bagnaia"
+},
+
+
+{
+round:"16",
+flag:"🇯🇵",
+country:"Jepang",
+circuit:"Mobility Resort Motegi",
+date:"2 – 4 Oktober 2026",
+
+rider:"Ai Ogura",
+wiki:"Ai_Ogura",
+
+practice:"13:00 WIB",
+qualifying:"12:50 WIB",
+sprint:"13:00 WIB",
+race:"13:00 WIB",
+
+record:"1:43.790 — Jorge Martín"
+},
+
+
+{
+round:"17",
+flag:"🇮🇩",
+country:"Indonesia",
+circuit:"Pertamina Mandalika International Circuit",
+date:"9 – 11 Oktober 2026",
+
+rider:"Veda Pratama",
+wiki:"Veda_Pratama",
+
+practice:"14:00 WIB",
+qualifying:"13:50 WIB",
+sprint:"15:00 WIB",
+race:"15:00 WIB",
+
+record:"1:29.088 — Jorge Martín"
+},
+
+
+{
+round:"18",
+flag:"🇦🇺",
+country:"Australia",
+circuit:"Phillip Island Grand Prix Circuit",
+date:"23 – 25 Oktober 2026",
+
+rider:"Jack Miller",
+wiki:"Jack_Miller_(motorcyclist)",
+
+practice:"01:00 WIB",
+qualifying:"00:50 WIB",
+sprint:"10:00 WIB",
+race:"10:00 WIB",
+
+record:"1:27.246 — Jorge Martín"
+},
+
+
+{
+round:"19",
+flag:"🇲🇾",
+country:"Malaysia",
+circuit:"Sepang International Circuit",
+date:"30 Oktober – 1 November 2026",
+
+rider:"Hakim Danish",
+wiki:"Hakim_Danish",
+
+practice:"14:00 WIB",
+qualifying:"13:50 WIB",
+sprint:"15:00 WIB",
+race:"15:00 WIB",
+
+record:"1:57.491 — Francesco Bagnaia"
+},
+
+
+{
+round:"20",
+flag:"🇶🇦",
+country:"Qatar",
+circuit:"Lusail International Circuit",
+date:"6 – 8 November 2026",
+
+rider:"Mohammed Al Sulaiti",
+wiki:"Mohammed_Al_Sulaiti",
+
+practice:"23:00 WIB",
+qualifying:"22:50 WIB",
+sprint:"00:00 WIB",
+race:"00:00 WIB",
+
+record:"1:51.762 — Francesco Bagnaia"
+},
+
+
+{
+round:"21",
+flag:"🇵🇹",
+country:"Portugal",
+circuit:"Autódromo Internacional do Algarve",
+date:"20 – 22 November 2026",
+
+rider:"Miguel Oliveira",
+wiki:"Miguel_Oliveira",
+
+practice:"18:00 WIB",
+qualifying:"17:50 WIB",
+sprint:"20:00 WIB",
+race:"20:00 WIB",
+
+record:"1:37.968 — Francesco Bagnaia"
+},
+
+
+{
+round:"22",
+flag:"🇪🇸",
+country:"Valencia",
+circuit:"Circuit Ricardo Tormo",
+date:"27 – 29 November 2026",
+
+rider:"Marc Márquez",
+wiki:"Marc_Márquez",
+
+practice:"20:00 WIB",
+qualifying:"19:50 WIB",
+sprint:"20:00 WIB",
+race:"20:00 WIB",
+
+record:"1:29.401 — Jorge Martín"
+}
+
+];
+
+
+/* =================================================
+   MEMBUAT KARTU
+   ================================================= */
+
+const calendar =
+document.getElementById("calendar");
+
+
+races.forEach((r,index)=>{
+
+    const card =
+    document.createElement("article");
+
+    card.className =
+    "gp-card";
+
+
+    card.innerHTML = `
+
+        <div class="gp-info">
+
+            <div class="round">
+                ROUND ${r.round}
+            </div>
+
+            <div class="gp-name">
+
+                <span class="flag">
+                    ${r.flag}
+                </span>
+
+                ${r.country}
+
+            </div>
+
+            <div class="circuit-name">
+                ${r.circuit}
+            </div>
+
+            <div class="date">
+                📅 ${r.date}
+            </div>
+
+        </div>
+
+
+        <div
+            class="rider-photo"
+            id="photo-${index}"
+        >
+
+            <div class="no-photo">
+
+                <span class="icon">
+                    🏍️
+                </span>
+
+                <span>
+                    Memuat foto pembalap...
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="sessions">
+
+            <div class="session practice">
+
+                <strong>
+                    Practice
+                </strong>
+
+                <span>
+                    ${r.practice}
+                </span>
+
+            </div>
+
+
+            <div class="session qualifying">
+
+                <strong>
+                    Qualifying
+                </strong>
+
+                <span>
+                    ${r.qualifying}
+                </span>
+
+            </div>
+
+
+            <div class="session sprint">
+
+                <strong>
+                    Sprint
+                </strong>
+
+                <span>
+                    ${r.sprint}
+                </span>
+
+            </div>
+
+
+            <div class="session race">
+
+                <strong>
+                    Race
+                </strong>
+
+                <span>
+                    ${r.race}
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="record">
+
+            <div class="record-title">
+                🏆 REKOR LAP
+            </div>
+
+            <div class="record-text">
+                ${r.record}
+            </div>
+
+        </div>
+
+    `;
+
+
+    calendar.appendChild(card);
+
+
+    loadRiderPhoto(
+        r,
+        index
+    );
+
+});
+
+
+/* =================================================
+   MENGAMBIL FOTO PEMBALAP
+   ================================================= */
+
+async function loadRiderPhoto(r,index){
+
+    const box =
+    document.getElementById(
+        "photo-"+index
+    );
+
+
+    try{
+
+        const url =
+        "https://en.wikipedia.org/api/rest_v1/page/summary/"
+        +
+        encodeURIComponent(r.wiki);
+
+
+        const response =
+        await fetch(url);
+
+
+        if(!response.ok)
+            throw new Error();
+
+
+        const data =
+        await response.json();
+
+
+        if(
+            !data.thumbnail ||
+            !data.thumbnail.source
+        ){
+
+            throw new Error();
+
+        }
+
+
+        const img =
+        document.createElement("img");
+
+
+        img.src =
+        data.thumbnail.source;
+
+
+        img.alt =
+        "Foto " + r.rider;
+
+
+        img.loading =
+        "lazy";
+
+
+        img.onerror =
+        function(){
+
+            showFallback(
+                box,
+                r.rider
+            );
+
+        };
+
+
+        box.innerHTML = "";
+
+
+        box.appendChild(img);
+
+
+        const name =
+        document.createElement("div");
+
+
+        name.className =
+        "rider-name";
+
+
+        name.textContent =
+        "🏍️ " + r.rider;
+
+
+        box.appendChild(name);
+
+
+    }
+
+    catch(error){
+
+        showFallback(
+            box,
+            r.rider
+        );
+
+    }
+
+}
+
+
+/* =================================================
+   JIKA FOTO TIDAK TERSEDIA
+   ================================================= */
+
+function showFallback(box,name){
+
+    box.innerHTML = `
+
+        <div class="no-photo">
+
+            <span class="icon">
+                🏍️
+            </span>
+
+            <span>
+                ${name}
+            </span>
+
+        </div>
+
+    `;
+
+}
+
+</script>
+
+</body>
+</html>

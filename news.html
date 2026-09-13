@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DYAR-GPTM | News</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            color: white;
+
+            background:
+                linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.85)),
+                url("motogp.jpg");
+
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        /* =========================
+           MENU ATAS TENGAH
+        ========================= */
+        nav {
+            position: absolute;
+            top: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+
+            z-index: 10;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            background: #d00000;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+        header {
+            text-align: center;
+            padding: 100px 20px 35px;
+        }
+
+        header h1 {
+            font-size: 45px;
+            font-weight: 900;
+            letter-spacing: 3px;
+        }
+
+        header p {
+            margin-top: 8px;
+            color: #ccc;
+        }
+
+        /* =========================
+           NEWS
+        ========================= */
+        .news-container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .news-title {
+            margin-bottom: 20px;
+            border-left: 5px solid red;
+            padding-left: 12px;
+        }
+
+        .news-card {
+            background: rgba(0,0,0,0.78);
+            border-radius: 15px;
+            padding: 22px;
+            margin-bottom: 18px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.3s;
+        }
+
+        .news-card:hover {
+            transform: translateY(-3px);
+            background: rgba(20,20,20,0.9);
+        }
+
+        .news-card h2 {
+            font-size: 21px;
+            margin-bottom: 10px;
+        }
+
+        .news-date {
+            color: #ff3333;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .news-card p {
+            color: #ccc;
+            line-height: 1.7;
+        }
+
+        .news-card a {
+            display: inline-block;
+            margin-top: 15px;
+            color: #ff3333;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .news-card a:hover {
+            text-decoration: underline;
+        }
+
+        .loading {
+            text-align: center;
+            color: #ccc;
+            padding: 30px;
+        }
+
+        .error {
+            text-align: center;
+            color: #ff5555;
+            padding: 30px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #aaa;
+        }
+
+        /* =========================
+           HP
+        ========================= */
+        @media (max-width: 600px) {
+
+            nav {
+                top: 15px;
+                gap: 2px;
+                width: 100%;
+            }
+
+            nav a {
+                padding: 8px 8px;
+                font-size: 12px;
+            }
+
+            header {
+                padding-top: 85px;
+            }
+
+            header h1 {
+                font-size: 35px;
+            }
+
+            .news-container {
+                margin: 20px 10px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- MENU -->
+    <nav>
+        <a href="index.html">HOME</a>
+        <a href="jadwal.html">JADWAL</a>
+        <a href="news.html">NEWS</a>
+        <a href="about.html">ABOUT</a>
+    </nav>
+
+
+    <!-- HEADER -->
+    <header>
+        <h1>DYAR-GPTM</h1>
+        <p>MotoGP Information Website</p>
+    </header>
+
+
+    <!-- BERITA -->
+    <div class="news-container">
+
+        <h2 class="news-title">📰 MotoGP NEWS </h2>
+
+        <div id="news-list">
+            <div class="loading">
+                Memuat berita MotoGP terbaru...
+            </div>
+        </div>
+
+    </div>
+
+
+    <footer>
+        © 2026 DYAR-GPTM
+    </footer>
+
+
+    <!-- =========================
+         JAVASCRIPT BERITA OTOMATIS
+    ========================= -->
+    <script>
+
+        const newsList = document.getElementById("news-list");
+
+        /*
+         * RSS MotoGP
+         * Feed diambil melalui RSS2JSON
+         */
+        const rssURL =
+            "https://www.motogp.com/en/news";
+
+        const apiURL =
+            "https://api.rss2json.com/v1/api.json?rss_url=" +
+            encodeURIComponent(
+                "https://www.motogp.com/en/news"
+            );
+
+
+        async function loadNews() {
+
+            try {
+
+                const response = await fetch(apiURL);
+
+                if (!response.ok) {
+                    throw new Error("Gagal mengambil berita");
+                }
+
+                const data = await response.json();
+
+                newsList.innerHTML = "";
+
+
+                if (!data.items || data.items.length === 0) {
+
+                    newsList.innerHTML = `
+                        <div class="error">
+                            Berita belum tersedia.
+                        </div>
+                    `;
+
+                    return;
+                }
+
+
+                /*
+                 * Tampilkan maksimal 10 berita
+                 */
+                data.items.slice(0, 10).forEach(article => {
+
+                    const card = document.createElement("div");
+
+                    card.className = "news-card";
+
+
+                    /*
+                     * Format tanggal
+                     */
+                    const date = new Date(article.pubDate);
+
+                    const formattedDate =
+                        date.toLocaleDateString(
+                            "id-ID",
+                            {
+                                day: "numeric",
+                                month: "long",
+                                year: "numeric"
+                            }
+                        );
+
+
+                    card.innerHTML = `
+
+                        <div class="news-date">
+                            📅 ${formattedDate}
+                        </div>
+
+                        <h2>
+                            ${article.title}
+                        </h2>
+
+                        <p>
+                            ${article.description || ""}
+                        </p>
+
+                        <a
+                            href="${article.link}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Baca berita selengkapnya →
+                        </a>
+
+                    `;
+
+
+                    newsList.appendChild(card);
+
+                });
+
+            }
+
+            catch (error) {
+
+                console.error(error);
+
+                newsList.innerHTML = `
+                    <div class="error">
+                        ⚠️. Terjadi kesalahan saat memuat berita.
+                        <br><br>
+                        Coba lain waktu....
+                    </div>
+                `;
+
+            }
+
+        }
+
+
+        /* Jalankan saat halaman dibuka */
+        loadNews();
+
+    </script>
+
+</body>
+</html>

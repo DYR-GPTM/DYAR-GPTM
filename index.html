@@ -7,364 +7,683 @@
     <title>DYAR-GPTM | MotoGP 2026</title>
 
     <style>
+
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         body {
             font-family: Arial, sans-serif;
             color: white;
+            min-height: 100vh;
 
-            /* BACKGROUND MOTOGP */
             background:
-                linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.85)),
-                url("motogp.jpg/rossi.jpg"); 
+                linear-gradient(
+                    rgba(0,0,0,0.78),
+                    rgba(0,0,0,0.90)
+                ),
+                url("morbi.jpg");
 
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
         }
 
-        /* HEADER */
-        header {
-            text-align: center;
-            padding: 70px 20px 40px;
-        }
 
-        header h1 {
-            font-size: 50px;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
+        /* ================= MENU ================= */
 
-        header h1 span {
-            color: #e10600;
-        }
-
-        header p {
-            margin-top: 12px;
-            font-size: 18px;
-            color: #ddd;
-        }
-
-        /* MENU */
         nav {
+            position: absolute;
+
+            top: 25px;
+            left: 50%;
+
+            transform: translateX(-50%);
+
             display: flex;
             justify-content: center;
-            gap: 25px;
-            padding: 15px;
-            background: rgba(0,0,0,0.75);
-            position: sticky;
-            top: 0;
-            z-index: 10;
+            align-items: center;
+
+            gap: 10px;
+
+            z-index: 100;
         }
 
         nav a {
             color: white;
+
             text-decoration: none;
+
+            padding: 10px 20px;
+
+            border-radius: 8px;
+
             font-weight: bold;
-        }
 
-        nav a:hover {
-            color: #e10600;
-        }
-
-        /* CONTAINER */
-        .container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 40px 20px;
-        }
-
-        .judul {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .judul h2 {
-            font-size: 32px;
-            text-transform: uppercase;
-        }
-
-        .judul p {
-            color: #ccc;
-            margin-top: 8px;
-        }
-
-        /* KARTU JADWAL */
-        .calendar {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 18px;
-        }
-
-        .race {
-            background: rgba(20,20,20,0.9);
-            border-left: 5px solid #e10600;
-            border-radius: 10px;
-            padding: 22px;
             transition: 0.3s;
         }
 
-        .race:hover {
-            transform: translateY(-6px);
-            background: rgba(40,40,40,0.95);
+        nav a:hover {
+            background: #d00000;
         }
 
-        .gp {
-            color: #e10600;
-            font-size: 14px;
-            font-weight: bold;
+
+        /* ================= HEADER ================= */
+
+        header {
+            text-align: center;
+
+            padding: 110px 20px 45px;
         }
 
-        .race h3 {
-            margin: 8px 0;
-            font-size: 23px;
+        header h1 {
+            font-size: 45px;
+
+            font-weight: 900;
+
+            letter-spacing: 3px;
         }
 
-        .date {
-            color: #ddd;
+        header p {
+            margin-top: 8px;
+
+            color: #ccc;
+
+            font-size: 17px;
+        }
+
+
+        /* ================= CONTAINER ================= */
+
+        .container {
+            width: 90%;
+
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding-bottom: 60px;
+        }
+
+
+        h2 {
+            text-align: center;
+
+            margin: 25px 0 35px;
+
+            font-size: 30px;
+        }
+
+
+        /* ================= GRID ================= */
+
+        .champions {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+
+        /* ================= CARD ================= */
+
+        .champion-card {
+
+            background: rgba(10,10,10,0.90);
+
+            border: 1px solid #444;
+
+            border-radius: 15px;
+
+            overflow: hidden;
+
+            text-align: center;
+
+            transition: 0.3s;
+        }
+
+        .champion-card:hover {
+
+            transform: translateY(-8px);
+
+            border-color: #e00000;
+
+            box-shadow:
+                0 10px 30px rgba(0,0,0,0.7);
+        }
+
+
+        /* ================= GAMBAR ================= */
+
+        .champion-card img {
+
+            width: 100%;
+
+            height: 260px;
+
+            object-fit: cover;
+
+            display: block;
+        }
+
+
+        /* ================= INFO ================= */
+
+        .champion-info {
+
+            padding: 20px;
+        }
+
+        .champion-info h3 {
+
+            font-size: 21px;
+
             margin-bottom: 8px;
         }
 
-        .circuit {
-            color: #aaa;
-            font-size: 14px;
+        .country {
+
+            color: #bbb;
+
+            margin-bottom: 12px;
         }
 
-        /* FOOTER */
-        footer {
-            text-align: center;
-            padding: 30px;
-            margin-top: 30px;
-            background: rgba(0,0,0,0.85);
-            color: #aaa;
+
+        /* ================= JUMLAH GELAR ================= */
+
+        .number {
+
+            font-size: 55px;
+
+            font-weight: 900;
+
+            color: #e00000;
+
+            line-height: 1;
         }
 
-        footer strong {
+        .title-text {
+
+            color: #ddd;
+
+            margin-top: 8px;
+        }
+
+
+        /* ================= NOMOR GELAR ================= */
+
+        .rank {
+
+            position: absolute;
+
+            background: #d00000;
+
             color: white;
+
+            padding: 7px 13px;
+
+            border-radius: 0 0 10px 0;
+
+            font-weight: bold;
         }
 
-        /* HP */
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 34px;
-            }
+
+        /* ================= 6 GELAR ================= */
+
+        .empty-card {
+
+            background: rgba(10,10,10,0.90);
+
+            border: 1px solid #444;
+
+            border-radius: 15px;
+
+            min-height: 390px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            align-items: center;
+
+            text-align: center;
+
+            padding: 25px;
+        }
+
+        .empty-number {
+
+            font-size: 70px;
+
+            font-weight: 900;
+
+            color: #555;
+        }
+
+        .empty-card h3 {
+
+            margin-top: 15px;
+
+            font-size: 22px;
+        }
+
+        .empty-card p {
+
+            color: #aaa;
+
+            margin-top: 10px;
+
+            line-height: 1.5;
+        }
+
+
+        /* ================= FOOTER ================= */
+
+        footer {
+
+            text-align: center;
+
+            padding: 25px;
+
+            color: #aaa;
+
+            border-top: 1px solid #333;
+        }
+
+
+        /* ================= HP ================= */
+
+        @media (max-width: 850px) {
 
             nav {
-                gap: 15px;
-                font-size: 14px;
+
+                top: 15px;
+
+                gap: 3px;
+            }
+
+            nav a {
+
+                padding: 8px 10px;
+
+                font-size: 13px;
+            }
+
+            header {
+
+                padding-top: 90px;
+            }
+
+            header h1 {
+
+                font-size: 32px;
+            }
+
+            .champions {
+
+                grid-template-columns: 1fr;
+            }
+
+            .champion-card img {
+
+                height: 330px;
             }
         }
+
     </style>
 </head>
 
+
 <body>
 
-    <!-- MENU -->
+
+    <!-- ================= MENU ================= -->
+
     <nav>
-        <a href="#home">HOME</a>
-        <a href="#jadwal">JADWAL</a>
-        <a href="#about">ABOUT</a>
+
+        <a href="index.html">HOME</a>
+
+        <a href="jadwal.html">JADWAL</a>
+
+        <a href="about.html">ABOUT</a>
+
+        <a href="news.html">NEWS</a>
+
     </nav>
 
 
-    <!-- HEADER -->
-    <header id="home">
-        <h1>DYAR-<span>GPTM</span></h1>
-        <p>Official MotoGP 2026 Calendar</p>
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <h1>DYAR-GPTM</h1>
+
+        <p>MotoGP Information Website</p>
+
     </header>
 
 
-    <!-- JADWAL -->
-    <main class="container" id="jadwal">
 
-        <div class="judul">
-            <h2>🏁 MotoGP 2026</h2>
-            <p>Jadwal Grand Prix MotoGP musim 2026</p>
+    <!-- ================= ISI ================= -->
+
+    <main class="container">
+
+
+        <h2>
+            🏆 Top Juara Dunia Kelas Utama
+        </h2>
+
+
+        <div class="champions">
+
+
+            <!-- ================= 8 GELAR ================= -->
+
+            <div class="champion-card">
+
+                <img
+                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Giacomo_Agostini_2022.jpg"
+                    alt="Giacomo Agostini"
+                >
+
+                <div class="champion-info">
+
+                    <h3>
+                        Giacomo Agostini
+                    </h3>
+
+                    <p class="country">
+                        🇮🇹 Italia
+                    </p>
+
+                    <div class="number">
+                        8
+                    </div>
+
+                    <p class="title-text">
+                        Gelar Juara Dunia Kelas Utama
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================= 7 GELAR ROSSI ================= -->
+
+            <div class="champion-card">
+
+                <img
+                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Valentino_Rossi_2010_Motorland_Aragón.jpg"
+                    alt="Valentino Rossi"
+                >
+
+                <div class="champion-info">
+
+                    <h3>
+                        Valentino Rossi
+                    </h3>
+
+                    <p class="country">
+                        🇮🇹 Italia
+                    </p>
+
+                    <div class="number">
+                        7
+                    </div>
+
+                    <p class="title-text">
+                        Gelar Juara Dunia Kelas Utama
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================= 7 GELAR MARQUEZ ================= -->
+
+            <div class="champion-card">
+
+                <img
+                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Marc_Márquez_2019_Le_Mans.jpeg"
+                    alt="Marc Marquez"
+                >
+
+                <div class="champion-info">
+
+                    <h3>
+                        Marc Márquez
+                    </h3>
+
+                    <p class="country">
+                        🇪🇸 Spanyol
+                    </p>
+
+                    <div class="number">
+                        7
+                    </div>
+
+                    <p class="title-text">
+                        Gelar Juara Dunia Kelas Utama
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================= 6 GELAR ================= -->
+
+            <div class="empty-card">
+
+                <div class="empty-number">
+                    6
+                </div>
+
+                <h3>
+                    Belum Ada
+                </h3>
+
+                <p>
+                    Belum ada pembalap yang
+                    meraih tepat 6 gelar
+                    Juara Dunia kelas utama.
+                </p>
+
+            </div>
+
+
+
+            <!-- ================= 5 GELAR ================= -->
+
+            <div class="champion-card">
+
+                <img
+                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Mick_Doohan_in_1998.jpeg"
+                    alt="Mick Doohan"
+                >
+
+                <div class="champion-info">
+
+                    <h3>
+                        Mick Doohan
+                    </h3>
+
+                    <p class="country">
+                        🇦🇺 Australia
+                    </p>
+
+                    <div class="number">
+                        5
+                    </div>
+
+                    <p class="title-text">
+                        Gelar Juara Dunia Kelas Utama
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================= 4 GELAR ================= -->
+
+            <div class="champion-card">
+
+                <img
+                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Eddie_Lawson_1989.jpg"
+                    alt="Eddie Lawson"
+                >
+
+                <div class="champion-info">
+
+                    <h3>
+                        Eddie Lawson
+                    </h3>
+
+                    <p class="country">
+                        🇺🇸 Amerika Serikat
+                    </p>
+
+                    <div class="number">
+                        4
+                    </div>
+
+                    <p class="title-text">
+                        Gelar Juara Dunia Kelas Utama
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================= 3 GELAR ================= -->
+
+            <div class="champion-card">
+
+                <img
+                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Jorge_Lorenzo.jpg"
+                    alt="Jorge Lorenzo"
+                >
+
+                <div class="champion-info">
+
+                    <h3>
+                        Jorge Lorenzo
+                    </h3>
+
+                    <p class="country">
+                        🇪🇸 Spanyol
+                    </p>
+
+                    <div class="number">
+                        3
+                    </div>
+
+                    <p class="title-text">
+                        Gelar Juara Dunia Kelas Utama
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================= 2 GELAR ================= -->
+
+            <div class="champion-card">
+
+                <img
+                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Casey_Stoner_2007_Philip_Island_(cropped).jpg"
+                    alt="Casey Stoner"
+                >
+
+                <div class="champion-info">
+
+                    <h3>
+                        Casey Stoner
+                    </h3>
+
+                    <p class="country">
+                        🇦🇺 Australia
+                    </p>
+
+                    <div class="number">
+                        2
+                    </div>
+
+                    <p class="title-text">
+                        Gelar Juara Dunia Kelas Utama
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================= 1 GELAR ================= -->
+
+            <div class="champion-card">
+
+                <img
+                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/NickyHayden.jpg"
+                    alt="Nicky Hayden"
+                >
+
+                <div class="champion-info">
+
+                    <h3>
+                        Nicky Hayden
+                    </h3>
+
+                    <p class="country">
+                        🇺🇸 Amerika Serikat
+                    </p>
+
+                    <div class="number">
+                        1
+                    </div>
+
+                    <p class="title-text">
+                        Gelar Juara Dunia Kelas Utama
+                    </p>
+
+                </div>
+
+            </div>
+
+
         </div>
 
-
-        <div class="calendar">
-
-            <div class="race">
-                <div class="gp">GP 01</div>
-                <h3>🇹🇭 Thailand</h3>
-                <div class="date">27 Februari – 1 Maret 2026</div>
-                <div class="circuit">Chang International Circuit</div>
-            </div>
-
-            <div class="race">
-                <div class="gp">GP 02</div>
-                <h3>🇧🇷 Brazil</h3>
-                <div class="date">20 – 22 Maret 2026</div>
-                <div class="circuit">Autódromo Internacional de Goiânia</div>
-            </div>
-
-            <div class="race">
-                <div class="gp">GP 03</div>
-                <h3>🇺🇸 USA</h3>
-                <div class="date">27 – 29 Maret 2026</div>
-                <div class="circuit">Circuit of The Americas</div>
-            </div>
-
-            <div class="race">
-                <div class="gp">GP 04</div>
-                <h3>🇪🇸 Spain</h3>
-                <div class="date">24 – 26 April 2026</div>
-                <div class="circuit">Circuito de Jerez</div>
-            </div>
-
-            <div class="race">
-                <div class="gp">GP 05</div>
-                <h3>🇫🇷 France</h3>
-                <div class="date">8 – 10 Mei 2026</div>
-                <div class="circuit">Le Mans</div>
-            </div>
-
-            <div class="race">
-                <div class="gp">GP 06</div>
-                <h3>🇪🇸 Catalonia</h3>
-                <div class="date">15 – 17 Mei 2026</div>
-                <div class="circuit">Circuit de Barcelona-Catalunya</div>
-            </div>
-
-            <div class="race">
-                <div class="gp">GP 07</div>
-                <h3>🇮🇹 Italy</h3>
-                <div class="date">29 – 31 Mei 2026</div>
-                <div class="circuit">Mugello Circuit</div>
-            </div>
-
-            <div class="race">
-                <div class="gp">GP 08</div>
-                <h3>🇭🇺 Hungary</h3>
-                <div class="date">5 – 7 Juni 2026</div>
-                <div class="circuit">Balaton Park Circuit</div>
-            </div>
-
-            <div class="race">
-                <div class="gp">GP 09</div>
-                <h3>🇨🇿 Czechia</h3>
-                <div class="date">19 – 21 Juni 2026</div>
-                <div class="circuit">Brno Circuit</div>
-            </div>
-
-            <div class="race">
-                <div class="gp">GP 10</div>
-                <h3>🇳🇱 Netherlands</h3>
-                <div class="date">26 – 28 Juni 2026</div>
-                <div class="circuit">TT Circuit Assen</div>
-            </div>
-
-            <div class="race">
-                <div class="gp">GP 11</div>
-                <h3>🇩🇪 Germany</h3>
-                <div class="date">10 – 12 Juli 2026</div>
-                <div class="circuit">Sachsenring</div>
-            </div>
-
-            <div class="race">
-                <div class="gp">GP 12</div>
-                <h3>🇬🇧 Great Britain</h3>
-                <div class="date">7 – 9 Agustus 2026</div>
-                <div class="circuit">Silverstone Circuit</div>
-            </div>
-
-            <div class="race">
-                <div class="gp">GP 13</div>
-                <h3>🇪🇸 Aragon</h3>
-                <div class="date">28 – 30 Agustus 2026</div>
-                <div class="circuit">MotorLand Aragón</div>
-            </div>
-
-            <div class="race">
-                <div class="gp">GP 14</div>
-                <h3>🇸🇲 San Marino</h3>
-                <div class="date">11 – 13 September 2026</div>
-                <div class="circuit">Misano World Circuit</div>
-            </div>
-
-            <div class="race">
-                <div class="gp">GP 15</div>
-                <h3>🇦🇹 Austria</h3>
-                <div class="date">18 – 20 September 2026</div>
-                <div class="circuit">Red Bull Ring</div>
-            </div>
-
-            <div class="race">
-                <div class="gp">GP 16</div>
-                <h3>🇯🇵 Japan</h3>
-                <div class="date">2 – 4 Oktober 2026</div>
-                <div class="circuit">Mobility Resort Motegi</div>
-            </div>
-
-            <div class="race">
-                <div class="gp">GP 17</div>
-                <h3>🇮🇩 Indonesia</h3>
-                <div class="date">9 – 11 Oktober 2026</div>
-                <div class="circuit">Pertamina Mandalika Circuit</div>
-            </div>
-
-            <div class="race">
-                <div class="gp">GP 18</div>
-                <h3>🇦🇺 Australia</h3>
-                <div class="date">22 – 25 Oktober 2026</div>
-                <div class="circuit">Phillip Island</div>
-            </div>
-
-            <div class="race">
-                <div class="gp">GP 19</div>
-                <h3>🇲🇾 Malaysia</h3>
-                <div class="date">30 Oktober – 1 November 2026</div>
-                <div class="circuit">Sepang International Circuit</div>
-            </div>
-
-            <div class="race">
-                <div class="gp">GP 20</div>
-                <h3>🇶🇦 Qatar</h3>
-                <div class="date">6 – 8 November 2026</div>
-                <div class="circuit">Lusail International Circuit</div>
-            </div>
-
-            <div class="race">
-                <div class="gp">GP 21</div>
-                <h3>🇵🇹 Portugal</h3>
-                <div class="date">20 – 22 November 2026</div>
-                <div class="circuit">Autódromo Internacional do Algarve</div>
-            </div>
-
-            <div class="race">
-                <div class="gp">GP 22</div>
-                <h3>🇪🇸 Valencia</h3>
-                <div class="date">27 – 29 November 2026</div>
-                <div class="circuit">Circuit Ricardo Tormo</div>
-            </div>
-
-        </div>
     </main>
 
 
-    <!-- ABOUT -->
-    <section class="container" id="about">
-        <div class="judul">
-            <h2>About</h2>
-            <p>
-                Website kalender MotoGP 2026 lengkap dengan jadwal balapan dan siaran langsung
-                Dibuat oleh DYAR-GPTM.
-            </p>
-        </div>
-    </section>
 
+    <!-- ================= FOOTER ================= -->
 
-    <!-- FOOTER -->
     <footer>
-        <p>© 2026 <strong>DYAR-GPTM</strong> | MotoGP Fan Website</p>
+
+        © 2026 DYAR-GPTM — MotoGP Information Website
+
     </footer>
+
 
 </body>
 </html>
-    </body>
